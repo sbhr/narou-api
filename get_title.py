@@ -110,7 +110,7 @@ params = make_params({'of': 't', 'genre': genre, 'order': 'hyoka'})
 allcount = get_allcount(params)
 data = get_narou_data_until_max(params, allcount)
 
-f = open('data.txt', 'w')
+f = open('title_{}.txt'.format(genre), 'w')
 for item in data:
     f.write(item['title'] + '\n')
 f.close()
