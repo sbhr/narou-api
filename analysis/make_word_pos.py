@@ -6,9 +6,9 @@
 形態素解析して、単語と品詞のcsvで出力
 """
 
-import sys
-import os
 import csv
+import os
+import sys
 import MeCab
 
 mecab = MeCab.Tagger('-d /usr/local/lib/mecab/dic/mecab-ipadic-neologd')
@@ -51,7 +51,7 @@ if __name__ == '__main__':
         result.extend(morphological_analysis(row))
     f.close()
 
-    output_file = 'words_{0}.csv'.format(
+    output_file = 'words_{}.csv'.format(
         os.path.splitext(file_name)[0].split('_')[1])
     with open(output_file, 'a', newline='', encoding='utf-8') as f:
         writer = csv.writer(f, lineterminator='\n')

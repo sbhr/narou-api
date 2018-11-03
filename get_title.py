@@ -6,9 +6,10 @@
 総合評価順に全て（最大2000件）のタイトルを取得する
 """
 
-import requests
+import datetime
 import gzip
 import json
+import requests
 
 API_URL = "http://api.syosetu.com/novelapi/api/"
 
@@ -110,7 +111,7 @@ params = make_params({'of': 't', 'genre': genre, 'order': 'hyoka'})
 allcount = get_allcount(params)
 data = get_narou_data_until_max(params, allcount)
 
-f = open('title_{}.txt'.format(genre), 'w')
+f = open('title_{}_{}.txt'.format(genre, datetime.datetime.today().strftime("%Y_%m_%d_%H_%M_%S")), 'w')
 for item in data:
     f.write(item['title'] + '\n')
 f.close()
