@@ -96,6 +96,7 @@ def get_narou_data_until_max(params: dict, max: int):
         del temp[0]  # delete allcount
         data.extend(temp)
         count += LIMIT
+    print('100%')
 
     return data
 

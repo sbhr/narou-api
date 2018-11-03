@@ -101,5 +101,6 @@ ENV/
 .mypy_cache/
 
 # data
+analysis/data/
 analysis/*.csv
 analysis/*.txt
