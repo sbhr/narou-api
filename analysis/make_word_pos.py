@@ -27,11 +27,12 @@ def morphological_analysis(text: str) -> [[str, str]]:
     node = mecab.parseToNode(text)
 
     while node:
+        features = node.feature.split(",")
         # 単語
-        word = node.surface
+        word = features[6]
         # 品詞
-        pos = node.feature.split(",")[1]
-        if word != '':
+        pos = features[0]
+        if pos != 'BOS/EOS' and word != '':
             array.append([word, pos])
         node = node.next
 
