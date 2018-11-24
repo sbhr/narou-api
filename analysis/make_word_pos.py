@@ -11,7 +11,10 @@ import os
 import sys
 import MeCab
 
-mecab = MeCab.Tagger('-d /usr/local/lib/mecab/dic/mecab-ipadic-neologd')
+# IPAの辞書
+mecab = MeCab.Tagger('-d /usr/local/lib/mecab/dic/ipadic')
+# 多数のWeb上の言語資源から得た新語を追加することでカスタマイズした MeCab 用のシステム辞書
+# mecab = MeCab.Tagger('-d /usr/local/lib/mecab/dic/mecab-ipadic-neologd')
 mecab.parse('')
 
 
