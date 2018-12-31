@@ -33,7 +33,7 @@ $ python get_title.py
 75%
 100%
 
-$ ls 
+$ ls
 title_101_2018_11_03_13_22_30.txt
 
 $ head title_101_2018_11_03_13_22_30.txt
