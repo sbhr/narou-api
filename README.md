@@ -1,6 +1,6 @@
 # narou-api
 ## 総合評価順にタイトル取得
-```python
+```
 $ python get_title.py
 
     ジャンル一覧
