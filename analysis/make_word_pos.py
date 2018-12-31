@@ -15,6 +15,7 @@ import MeCab
 mecab = MeCab.Tagger('-d /usr/local/lib/mecab/dic/ipadic')
 # 多数のWeb上の言語資源から得た新語を追加することでカスタマイズした MeCab 用のシステム辞書
 # mecab = MeCab.Tagger('-d /usr/local/lib/mecab/dic/mecab-ipadic-neologd')
+# バグ回避のため、事前に空文字をパース
 mecab.parse('')
 
 
@@ -28,8 +29,17 @@ def morphological_analysis(text: str) -> [[str, str]]:
 
     while node:
         features = node.feature.split(",")
-        # 単語
-        word = features[6]
+        try:
+            # 単語によってはうまくパースできていないので、
+            # 文字数バイト分を切り取る
+            # 単語
+            word = node.surface.encode()[:node.length].decode('utf-8')
+            # うまく行く時こんな感じ
+            # word = features[6] # ipadic
+            # word = features[7] # unidic
+        except:
+            node = node.next
+            continue
         # 品詞
         pos = features[0]
         if pos != 'BOS/EOS' and word != '':
@@ -40,6 +50,7 @@ def morphological_analysis(text: str) -> [[str, str]]:
 
 
 if __name__ == '__main__':
+    # ファイル名をコマンドライン引数で渡す
     if len(sys.argv) != 2:
         print('invalid arguments')
         sys.exit()
